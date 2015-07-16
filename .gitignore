@@ -4,3 +4,5 @@
 .pydevproject
 
 josh_test.py
+
+*.pyc
