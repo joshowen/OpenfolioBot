@@ -1,5 +1,6 @@
 from constants import SUPPORTED_TICKERS
 from yahoo_finance import Share
+from datetime import datetime
 
 PUNCTUATION = set(".;:-,!@#$&*()[]{}?/\\%^<>=+'")
 
@@ -17,4 +18,11 @@ def find_tickers(tokens):
 def render_comment(tickers):
     for ticker in sorted(tickers):
         stk = Share(ticker)
-        print '''%s trading at %s.''' % (ticker.upper(), stk.get_price())
+        now = datetime.now()
+        print '''### %s\n
+=======\n
+* Price: %s
+* Market Cap: %s\n
+######*as of %s via [Openfolio](http://www.openfolio.com)*
+            
+            ''' % (ticker.upper(), stk.get_price(), stk.get_market_cap(), now.strftime('%Y/%m/%d %H:%M:%S'))
